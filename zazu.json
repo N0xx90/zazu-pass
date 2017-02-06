@@ -1,0 +1,41 @@
+{
+  "name": "zazu-pass",
+  "version": "1.0.0",
+  "description": "Zazu's plugin to run pass cmd from zazu",
+  "blocks": {
+    "input": [
+      {
+        "id": "term",
+        "type": "RootScript",
+	"space": true,
+        "script": "src/pass.js",
+        "connections": [
+          "getPass"
+        ]
+      }
+    ],
+    "output": [
+      {
+        "id": "getPass",
+        "type": "UserScript",
+        "script": "src/getPass.js",
+        "connections": [
+          "Notify",
+	  "clearClipboard"
+        ]
+      },
+      {
+        "id": "clearClipboard",
+        "type": "UserScript",
+	"script": "src/clearClipboard.js"
+      },
+      {
+        "id": "Notify",
+        "type": "SendNotification",
+	"title": "zazu-pass",
+        "message": "copied to clipboard... clear in 45 seconds"
+      }
+    ]
+  }
+}
+
